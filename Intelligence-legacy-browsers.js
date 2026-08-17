@@ -6,9 +6,7 @@
 // store info about the experiment session:
 let expName = 'Intelligence';  // from the Builder filename that created this script
 let expInfo = {
-    'first name': '',
-    'last name': '',
-    'participant': `${util.pad(Number.parseFloat(util.randint(0, 999999)).toFixed(0), 6)}`,
+    'name': '',
 };
 
 // Start code blocks for 'Before Experiment'
@@ -297,7 +295,7 @@ async function updateInfo() {
   
 
   
-  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["participant"]}_${expName}_${expInfo["date"]}`);
+  psychoJS.experiment.dataFileName = (("." + "/") + `data/${expInfo["name"]}_${expName}_${expInfo["date"]}`);
   psychoJS.experiment.field_separator = '\t';
 
 
@@ -3479,24 +3477,6 @@ function end_expRoutineBegin(snapshot) {
     routineTimer.add(3.000000);
     end_expMaxDurationReached = false;
     // update component parameters for each repeat
-    // Disable saving results to Pavlovia
-    psychoJS._saveResults = 0;
-    
-    // Generate filename for results
-    let filename = psychoJS.experiment._experimentName + '_' + util.toString(expInfo["participant"]) + '.csv';
-    
-    // Extract and convert data to CSV
-    let dataObj = psychoJS.experiment._trialsData;
-    let data = [Object.keys(dataObj[0])].concat(dataObj).map(it => { return Object.values(it).toString() }).join('\n');
-    
-    // Trigger download
-    let link = document.createElement('a');
-    link.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURI(data));
-    link.setAttribute('download', filename);
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
     psychoJS.experiment.addData('end_exp.started', globalClock.getTime());
     end_expMaxDuration = null
     // keep track of which components have finished
